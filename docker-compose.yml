@@ -1,0 +1,30 @@
+include:
+  - cert_volumes.yml
+
+services:
+  caddy:
+    image: lucaslorentz/caddy-docker-proxy:2.12.1
+    container_name: caddy
+    ports:
+      - 80:80
+      - 443:443/tcp
+      - 443:443/udp
+    env_file: override.env
+    environment:
+      CADDY_INGRESS_NETWORKS: caddy
+      CADDY_DOCKER_CADDYFILE_PATH: /config/caddy/Caddyfile
+    networks:
+      - caddy
+    restart: unless-stopped
+    volumes:
+      - /var/log/caddy:/var/log/caddy
+      - ./Caddyfile:/config/caddy/Caddyfile
+      - /var/run/docker.sock:/var/run/docker.sock
+      - caddy_data:/data
+
+networks:
+  caddy:
+    external: true
+
+volumes:
+  caddy_data: {}
