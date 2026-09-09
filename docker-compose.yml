@@ -3,7 +3,7 @@ include:
 
 services:
   caddy:
-    image: lucaslorentz/caddy-docker-proxy:2.12.1
+    image: lucaslorentz/caddy-docker-proxy:2.13.1
     container_name: caddy
     ports:
       - 80:80

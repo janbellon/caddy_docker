@@ -1,4 +1,0 @@
-{
-	acme_ca {$ACME_DOMAIN}
-	email {$ACME_EMAIL}
-}
